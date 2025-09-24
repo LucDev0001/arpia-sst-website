@@ -17,6 +17,7 @@ body {
   font-family: "Montserrat", sans-serif;
   background-color: var(--secondary-color);
   color: var(--text-color);
+  line-height: 1.6;
 }
 
 .container {
@@ -120,30 +121,57 @@ h2 {
 
 .cards-container {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  flex-wrap: wrap; /* Para responsividade */
+  justify-content: center; /* Alterado para center */
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 .card {
   background-color: var(--secondary-color);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 25px;
+  padding: 30px;
   text-align: center;
   width: 30%;
   min-width: 280px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .card h3 {
   margin: 15px 0 10px;
+  color: var(--primary-color);
 }
+
+/* --- NOVA ESTILIZAÇÃO DOS ÍCONES --- */
+.card .icon-container {
+  background-color: var(--light-gray);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%; /* Deixa o container circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px auto; /* Centraliza o círculo e dá espaço abaixo */
+  border: 3px solid #e0e0e0;
+}
+
+.icon-container img {
+  width: 45px; /* Define o tamanho do ícone dentro do círculo */
+  height: auto;
+}
+/* ------------------------------------- */
 
 .profile-pic {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
+  border: 4px solid var(--accent-color);
 }
 
 /* --- FOOTER --- */
@@ -152,4 +180,57 @@ footer {
   color: var(--secondary-color);
   text-align: center;
   padding: 20px 0;
+}
+
+/* ---################################--- */
+/* --- CSS 100% RESPONSIVO --- */
+/* ---################################--- */
+
+/* --- TABLETS (até 768px) --- */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  nav ul {
+    /* Futuramente, aqui entraria o código para o menu "hamburguer" */
+    gap: 15px; /* Reduz o espaço no tablet */
+  }
+
+  .cards-container {
+    gap: 20px;
+  }
+
+  .card {
+    width: 45%; /* Faz os cards ocuparem 2 colunas */
+  }
+}
+
+/* --- CELULARES (até 480px) --- */
+@media (max-width: 480px) {
+  header .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero {
+    height: 50vh;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem; /* Reduz a fonte do título principal */
+  }
+
+  .cta-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .card {
+    width: 90%; /* Faz os cards ocuparem 1 coluna */
+  }
 }

@@ -70,21 +70,30 @@ nav ul li a:hover {
   color: var(--secondary-color);
   display: flex;
   align-items: center;
-  text-align: center;
 }
 
 .hero-overlay {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Overlay para dar contraste */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* Alinhamento para DESKTOP */
+  justify-content: flex-end;
+}
+
+.hero .container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Alinhamento para DESKTOP */
+  align-items: flex-end;
+  text-align: right;
 }
 
 .hero h1 {
   font-size: 2.5rem;
-  max-width: 800px;
+  max-width: 550px; /* Ajustado para caber melhor no lado direito */
   margin-bottom: 20px;
 }
 
@@ -121,7 +130,7 @@ h2 {
 
 .cards-container {
   display: flex;
-  justify-content: center; /* Alterado para center */
+  justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
 }
@@ -147,24 +156,23 @@ h2 {
   color: var(--primary-color);
 }
 
-/* --- NOVA ESTILIZAÇÃO DOS ÍCONES --- */
 .card .icon-container {
   background-color: var(--light-gray);
   width: 90px;
   height: 90px;
-  border-radius: 50%; /* Deixa o container circular */
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 20px auto; /* Centraliza o círculo e dá espaço abaixo */
+  margin: 0 auto 20px auto;
   border: 3px solid #e0e0e0;
 }
 
 .icon-container img {
-  width: 45px; /* Define o tamanho do ícone dentro do círculo */
+  width: 80px;
+  border-radius: 50%;
   height: auto;
 }
-/* ------------------------------------- */
 
 .profile-pic {
   width: 100px;
@@ -188,13 +196,24 @@ footer {
 
 /* --- TABLETS (até 768px) --- */
 @media (max-width: 768px) {
+  /* --- ALTERAÇÃO PARA CENTRALIZAR O BANNER --- */
+  .hero-overlay {
+    justify-content: center;
+  }
+
+  .hero .container {
+    align-items: center;
+    text-align: center;
+  }
+  /* ------------------------------------------- */
+
   .hero h1 {
     font-size: 2rem;
+    max-width: 80%; /* Usa porcentagem para melhor ajuste */
   }
 
   nav ul {
-    /* Futuramente, aqui entraria o código para o menu "hamburguer" */
-    gap: 15px; /* Reduz o espaço no tablet */
+    gap: 15px;
   }
 
   .cards-container {
@@ -202,7 +221,7 @@ footer {
   }
 
   .card {
-    width: 45%; /* Faz os cards ocuparem 2 colunas */
+    width: 45%;
   }
 }
 
@@ -218,7 +237,8 @@ footer {
   }
 
   .hero h1 {
-    font-size: 1.5rem; /* Reduz a fonte do título principal */
+    font-size: 1.5rem;
+    max-width: 100%; /* Ocupa toda a largura disponível */
   }
 
   .cta-button {
@@ -231,6 +251,6 @@ footer {
   }
 
   .card {
-    width: 90%; /* Faz os cards ocuparem 1 coluna */
+    width: 90%;
   }
 }

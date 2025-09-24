@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Aguarda o DOM estar completamente carregado para executar o script
-  // --- LÓGICA FINAL E CORRIGIDA PARA O MENU HAMBURGER ---
+  // --- LÓGICA FINAL E CORRIGIDA PARA O MENU HAMBURGER (OVERLAY) ---
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelector(".nav-links");
   const body = document.body;
@@ -30,13 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const isClickInsideMenu = navLinks.contains(event.target);
     const isClickOnToggleButton = menuToggle.contains(event.target);
 
-    // Se o menu está ativo, e o clique NÃO foi dentro do menu e NEM no botão de toggle...
     if (
       navLinks.classList.contains("active") &&
       !isClickInsideMenu &&
       !isClickOnToggleButton
     ) {
-      // ...então, fecha o menu.
       closeMenu();
     }
   });
@@ -77,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- LÓGICA PARA A BARRA DE ROLAGEM (TICKER) ---
+  // Apenas clona os itens se o ticker-move existir, pois ele será "display: none" no mobile
   const tickerMove = document.querySelector(".ticker-move");
   if (tickerMove) {
     const tickerItems = tickerMove.querySelectorAll(".ticker-item");

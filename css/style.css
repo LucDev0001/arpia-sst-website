@@ -26,7 +26,7 @@ body {
   padding: 0 20px;
 }
 
-/* --- HEADER E NAVEGAÇÃO --- */
+/* --- HEADER E NAVEGAÇÃO (DESKTOP) --- */
 header {
   background-color: var(--primary-color);
   padding: 15px 0;
@@ -45,25 +45,27 @@ header .container {
   max-height: 50px;
 }
 
-nav ul {
+nav.nav-links ul {
+  /* Especificado para nav.nav-links */
   list-style: none;
   display: flex;
   gap: 25px;
 }
 
-nav ul li a {
+nav.nav-links ul li a {
+  /* Especificado para nav.nav-links */
   color: var(--secondary-color);
   text-decoration: none;
   font-weight: 700;
   transition: color 0.3s;
 }
 
-nav ul li a:hover {
+nav.nav-links ul li a:hover {
+  /* Especificado para nav.nav-links */
   color: var(--accent-color);
 }
 
-/* --- ESTILOS ATUALIZADOS PARA O MENU MOBILE (HAMBURGER) --- */
-
+/* --- ESTILOS MENU MOBILE (HAMBURGER - Desktop Hidden) --- */
 .menu-toggle {
   display: none; /* Escondido no desktop */
   flex-direction: column;
@@ -71,6 +73,7 @@ nav ul li a:hover {
   width: 30px;
   height: 25px;
   cursor: pointer;
+  z-index: 1001; /* Acima de tudo */
 }
 
 .menu-toggle .bar {
@@ -85,11 +88,9 @@ nav ul li a:hover {
 .menu-toggle.open .bar:nth-child(1) {
   transform: rotate(45deg) translate(5px, 6px);
 }
-
 .menu-toggle.open .bar:nth-child(2) {
   opacity: 0;
 }
-
 .menu-toggle.open .bar:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -6px);
 }
@@ -99,11 +100,10 @@ body.no-scroll {
   overflow: hidden;
 }
 
-/* --- ESTILOS PARA A BARRA DE ROLAGEM (TICKER) --- */
-
+/* --- ESTILOS PARA A BARRA DE ROLAGEM (TICKER - Desktop Only) --- */
 .ticker-wrap {
   width: 100%;
-  overflow: hidden; /* Esconde o que estiver fora da barra */
+  overflow: hidden;
   background-color: var(--primary-color);
   padding: 15px 0;
   border-top: 2px solid var(--accent-color);
@@ -113,29 +113,28 @@ body.no-scroll {
 .ticker-move {
   display: flex;
   align-items: center;
-  white-space: nowrap; /* Impede que o texto quebre a linha */
-  animation: ticker 40s linear infinite; /* Define a animação */
+  white-space: nowrap;
+  animation: ticker 40s linear infinite;
 }
 
 .ticker-item {
   color: var(--secondary-color);
   font-size: 0.9rem;
   font-weight: bold;
-  padding: 0 2rem; /* Espaçamento entre os itens */
+  padding: 0 2rem;
   letter-spacing: 1px;
 }
 
 .ticker-wrap:hover .ticker-move {
-  animation-play-state: paused; /* Pausa a animação ao passar o mouse */
+  animation-play-state: paused;
 }
 
-/* Animação de rolagem da esquerda para a direita */
 @keyframes ticker {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%); /* Move o conteúdo para a esquerda */
+    transform: translateX(-100%);
   }
 }
 
@@ -155,22 +154,20 @@ body.no-scroll {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  /* Alinhamento para DESKTOP */
-  justify-content: flex-end;
+  justify-content: flex-end; /* Alinhamento para DESKTOP */
 }
 
 .hero .container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* Alinhamento para DESKTOP */
-  align-items: flex-end;
+  align-items: flex-end; /* Alinhamento para DESKTOP */
   text-align: right;
 }
 
 .hero h1 {
   font-size: 2.5rem;
-  max-width: 550px; /* Ajustado para caber melhor no lado direito */
+  max-width: 550px;
   margin-bottom: 20px;
 }
 
@@ -259,9 +256,15 @@ h2 {
   border: 4px solid var(--accent-color);
 }
 
-/* --- ESTILOS PARA EFEITOS DE SCROLL --- */
+/* --- FOOTER --- */
+footer {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  text-align: center;
+  padding: 20px 0;
+}
 
-/* Botão Voltar ao Topo */
+/* --- ESTILOS PARA EFEITOS DE SCROLL --- */
 #back-to-top {
   position: fixed;
   bottom: 20px;
@@ -290,7 +293,6 @@ h2 {
   transform: translateY(0);
 }
 
-/* Animação de Fade-in */
 .fade-in-section {
   opacity: 0;
   transform: translateY(30px);
@@ -302,54 +304,115 @@ h2 {
   transform: translateY(0);
 }
 
-/* --- FOOTER --- */
-footer {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  text-align: center;
-  padding: 20px 0;
-}
-
 /* ---################################--- */
 /* --- CSS 100% RESPONSIVO --- */
 /* ---################################--- */
 
-/* --- TABLETS (até 768px) --- */
+/* --- TABLETS E CELULARES (até 768px) --- */
 @media (max-width: 768px) {
-  /* --- ALTERAÇÃO PARA CENTRALIZAR O BANNER --- */
-  .hero-overlay {
+  /* --- HEADER E MENU MOBILE (NOVO ESTILO) --- */
+  header {
+    background-color: transparent; /* Fundo transparente no mobile */
+    padding: 10px 0; /* Padding menor */
+    position: fixed; /* Fixado no topo */
+    width: 100%;
+  }
+
+  header .container {
+    justify-content: flex-start; /* Logo e menu à esquerda */
+    gap: 15px; /* Espaçamento entre logo e menu */
+  }
+
+  header .container .logo {
+    max-height: 40px; /* Logo menor */
+  }
+
+  nav.nav-links {
+    /* Menu como Overlay */
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 26, 26, 0.95); /* Fundo semi-transparente */
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    opacity: 0; /* Esconde o menu */
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    z-index: 998; /* Abaixo do menu-toggle, mas acima do conteúdo */
+  }
+
+  nav.nav-links.active {
+    opacity: 1; /* Mostra o menu */
+    visibility: visible;
+  }
+
+  nav.nav-links ul {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    gap: 0; /* Remove gap */
+  }
+
+  nav.nav-links ul li {
+    padding: 20px 0;
+    width: 100%;
+  }
+
+  nav.nav-links ul li a {
+    font-size: 1.5rem; /* Fontes maiores no menu overlay */
+    color: var(--secondary-color);
+    display: block; /* Ocupa toda a largura do item */
+  }
+
+  nav.nav-links ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+  }
+
+  .menu-toggle {
+    display: flex; /* Aparece em telas menores */
+  }
+
+  /* --- TICKER (BARRA DE ROLAGEM) --- */
+  .ticker-wrap {
+    display: none; /* Esconde o ticker em mobile */
+  }
+
+  /* --- HERO SECTION --- */
+  .hero-overlay {
+    justify-content: center; /* Centraliza no mobile */
   }
 
   .hero .container {
-    align-items: center;
-    text-align: center;
+    align-items: center; /* Centraliza no mobile */
+    text-align: center; /* Centraliza no mobile */
   }
-  /* ------------------------------------------- */
 
   .hero h1 {
     font-size: 2rem;
-    max-width: 80%; /* Usa porcentagem para melhor ajuste */
+    max-width: 80%;
   }
 
-  nav ul {
-    gap: 15px;
-  }
-
+  /* --- CARDS SECTIONS --- */
   .cards-container {
     gap: 20px;
   }
 
   .card {
-    width: 45%;
+    width: 45%; /* Tablets: 2 colunas */
   }
 }
 
 /* --- CELULARES (até 480px) --- */
 @media (max-width: 480px) {
   header .container {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row; /* Mantém na linha para logo e menu */
+    justify-content: space-between; /* Espaçamento entre logo e menu */
+    padding: 0 10px; /* Padding menor */
   }
 
   .hero {
@@ -358,7 +421,7 @@ footer {
 
   .hero h1 {
     font-size: 1.5rem;
-    max-width: 100%; /* Ocupa toda a largura disponível */
+    max-width: 100%;
   }
 
   .cta-button {
@@ -371,50 +434,6 @@ footer {
   }
 
   .card {
-    width: 90%;
-  }
-}
-
-/* --- Ajustes responsivos para o menu --- */
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex; /* Aparece em telas menores */
-  }
-
-  .nav-links {
-    display: flex;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 70%;
-    max-width: 300px;
-    height: 100vh;
-    background-color: var(--primary-color);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translateX(100%);
-    transition: transform 0.4s ease-in-out;
-    z-index: 999; /* <<< --- ADICIONE ESTA LINHA --- */
-  }
-
-  .nav-links.active {
-    transform: translateX(0); /* Mostra o menu */
-  }
-
-  .nav-links ul {
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-  }
-
-  .nav-links ul li {
-    padding: 20px 0;
-    width: 100%;
-  }
-
-  .nav-links ul li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    width: 90%; /* Celulares: 1 coluna */
   }
 }

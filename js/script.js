@@ -41,3 +41,13 @@ window.addEventListener("scroll", handleScroll);
 sectionsToFade.forEach((section) => {
   sectionObserver.observe(section);
 });
+
+// --- LÓGICA PARA A BARRA DE ROLAGEM (TICKER) ---
+const tickerMove = document.querySelector(".ticker-move");
+
+// Clona todos os itens da barra
+const tickerItems = document.querySelectorAll(".ticker-item");
+tickerItems.forEach((item) => {
+  const clone = item.cloneNode(true);
+  tickerMove.appendChild(clone);
+});

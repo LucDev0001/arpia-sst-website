@@ -79,6 +79,46 @@ nav ul li a:hover {
   transition: all 0.3s ease-in-out;
 }
 
+/* --- ESTILOS PARA A BARRA DE ROLAGEM (TICKER) --- */
+
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden; /* Esconde o que estiver fora da barra */
+  background-color: var(--primary-color);
+  padding: 15px 0;
+  border-top: 2px solid var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.ticker-move {
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* Impede que o texto quebre a linha */
+  animation: ticker 40s linear infinite; /* Define a animação */
+}
+
+.ticker-item {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0 2rem; /* Espaçamento entre os itens */
+  letter-spacing: 1px;
+}
+
+.ticker-wrap:hover .ticker-move {
+  animation-play-state: paused; /* Pausa a animação ao passar o mouse */
+}
+
+/* Animação de rolagem da esquerda para a direita */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%); /* Move o conteúdo para a esquerda */
+  }
+}
+
 /* --- SEÇÃO HERO (BANNER PRINCIPAL) --- */
 .hero {
   height: 60vh;

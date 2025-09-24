@@ -1,53 +1,88 @@
-// --- LÓGICA PARA O MENU HAMBURGER ---
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
+document.addEventListener("DOMContentLoaded", () => {
+  // Aguarda o DOM estar completamente carregado para executar o script
+  // --- LÓGICA FINAL E CORRIGIDA PARA O MENU HAMBURGER ---
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+  const body = document.body;
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+  // Função para fechar o menu
+  const closeMenu = () => {
+    navLinks.classList.remove("active");
+    menuToggle.classList.remove("open");
+    body.classList.remove("no-scroll");
+  };
 
-// --- LÓGICA PARA EFEITOS DE SCROLL ---
+  // Abre/fecha o menu ao clicar no botão hamburger
+  menuToggle.addEventListener("click", (event) => {
+    event.stopPropagation(); // Impede que o clique no botão feche o menu imediatamente
+    navLinks.classList.toggle("active");
+    menuToggle.classList.toggle("open");
+    body.classList.toggle("no-scroll");
+  });
 
-// Seleciona os elementos
-const backToTopButton = document.querySelector("#back-to-top");
-const sectionsToFade = document.querySelectorAll(".fade-in-section");
+  // Fecha o menu se clicar em um link
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
 
-// Função para o Botão "Voltar ao Topo"
-const handleScroll = () => {
-  if (window.scrollY > 300) {
-    backToTopButton.classList.add("show");
-  } else {
-    backToTopButton.classList.remove("show");
-  }
-};
+  // Fecha o menu se clicar fora dele
+  document.addEventListener("click", (event) => {
+    const isClickInsideMenu = navLinks.contains(event.target);
+    const isClickOnToggleButton = menuToggle.contains(event.target);
 
-// Intersection Observer para animação de Fade-in
-const sectionObserver = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+    // Se o menu está ativo, e o clique NÃO foi dentro do menu e NEM no botão de toggle...
+    if (
+      navLinks.classList.contains("active") &&
+      !isClickInsideMenu &&
+      !isClickOnToggleButton
+    ) {
+      // ...então, fecha o menu.
+      closeMenu();
+    }
+  });
+
+  // --- LÓGICA PARA EFEITOS DE SCROLL ---
+  const backToTopButton = document.querySelector("#back-to-top");
+  const sectionsToFade = document.querySelectorAll(".fade-in-section");
+
+  if (backToTopButton) {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add("show");
+      } else {
+        backToTopButton.classList.remove("show");
       }
-    });
-  },
-  {
-    threshold: 0.1, // A animação começa quando 10% da seção estiver visível
+    };
+    window.addEventListener("scroll", handleScroll);
   }
-);
 
-// Adiciona os "escutadores" de eventos
-window.addEventListener("scroll", handleScroll);
-sectionsToFade.forEach((section) => {
-  sectionObserver.observe(section);
-});
+  if (sectionsToFade.length > 0) {
+    const sectionObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
 
-// --- LÓGICA PARA A BARRA DE ROLAGEM (TICKER) ---
-const tickerMove = document.querySelector(".ticker-move");
+    sectionsToFade.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+  }
 
-// Clona todos os itens da barra
-const tickerItems = document.querySelectorAll(".ticker-item");
-tickerItems.forEach((item) => {
-  const clone = item.cloneNode(true);
-  tickerMove.appendChild(clone);
+  // --- LÓGICA PARA A BARRA DE ROLAGEM (TICKER) ---
+  const tickerMove = document.querySelector(".ticker-move");
+  if (tickerMove) {
+    const tickerItems = tickerMove.querySelectorAll(".ticker-item");
+    tickerItems.forEach((item) => {
+      const clone = item.cloneNode(true);
+      tickerMove.appendChild(clone);
+    });
+  }
 });

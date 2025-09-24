@@ -62,21 +62,41 @@ nav ul li a:hover {
   color: var(--accent-color);
 }
 
-/* --- ESTILOS PARA O MENU MOBILE (HAMBURGER) --- */
+/* --- ESTILOS ATUALIZADOS PARA O MENU MOBILE (HAMBURGER) --- */
 
 .menu-toggle {
   display: none; /* Escondido no desktop */
   flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
   cursor: pointer;
-  gap: 4px;
 }
 
 .menu-toggle .bar {
-  width: 25px;
+  width: 100%;
   height: 3px;
   background-color: var(--secondary-color);
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
+}
+
+/* Animação para o "X" quando o menu está aberto */
+.menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Classe para bloquear o scroll do body */
+body.no-scroll {
+  overflow: hidden;
 }
 
 /* --- ESTILOS PARA A BARRA DE ROLAGEM (TICKER) --- */
@@ -356,33 +376,41 @@ footer {
 }
 
 /* --- Ajustes responsivos para o menu --- */
+
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex; /* Aparece em telas menores */
   }
 
   .nav-links {
-    display: none; /* Esconde os links por padrão */
-    position: absolute;
-    top: 80px; /* Altura do header */
+    display: flex;
+    position: fixed;
+    top: 0;
     right: 0;
-    width: 100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
     background-color: var(--primary-color);
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+    z-index: 999; /* <<< --- ADICIONE ESTA LINHA --- */
   }
 
   .nav-links.active {
-    display: flex; /* Mostra o menu quando a classe .active é adicionada via JS */
+    transform: translateX(0); /* Mostra o menu */
   }
 
   .nav-links ul {
     flex-direction: column;
     width: 100%;
+    text-align: center;
   }
 
   .nav-links ul li {
-    padding: 15px 0;
+    padding: 20px 0;
     width: 100%;
   }
 

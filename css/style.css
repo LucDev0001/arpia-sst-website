@@ -62,6 +62,23 @@ nav ul li a:hover {
   color: var(--accent-color);
 }
 
+/* --- ESTILOS PARA O MENU MOBILE (HAMBURGER) --- */
+
+.menu-toggle {
+  display: none; /* Escondido no desktop */
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--secondary-color);
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
 /* --- SEÇÃO HERO (BANNER PRINCIPAL) --- */
 .hero {
   height: 60vh;
@@ -182,6 +199,49 @@ h2 {
   border: 4px solid var(--accent-color);
 }
 
+/* --- ESTILOS PARA EFEITOS DE SCROLL --- */
+
+/* Botão Voltar ao Topo */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  transform: translateY(20px);
+}
+
+#back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Animação de Fade-in */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* --- FOOTER --- */
 footer {
   background-color: var(--primary-color);
@@ -252,5 +312,41 @@ footer {
 
   .card {
     width: 90%;
+  }
+}
+
+/* --- Ajustes responsivos para o menu --- */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex; /* Aparece em telas menores */
+  }
+
+  .nav-links {
+    display: none; /* Esconde os links por padrão */
+    position: absolute;
+    top: 80px; /* Altura do header */
+    right: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex; /* Mostra o menu quando a classe .active é adicionada via JS */
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links ul li {
+    padding: 15px 0;
+    width: 100%;
+  }
+
+  .nav-links ul li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }

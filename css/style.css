@@ -256,12 +256,161 @@ h2 {
   border: 4px solid var(--accent-color);
 }
 
-/* --- FOOTER --- */
+/* --- FOOTER ATUALIZADO --- */
 footer {
   background-color: var(--primary-color);
   color: var(--secondary-color);
+  padding: 50px 0 20px 0; /* Mais padding no topo */
+  font-size: 0.95rem;
+}
+
+footer .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Colunas responsivas */
+  gap: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha divisória */
+  padding-bottom: 30px;
+}
+
+.footer-col h3 {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Linha decorativa abaixo dos títulos do footer */
+.footer-col h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 40px;
+  height: 3px;
+  background-color: var(--accent-color);
+}
+
+.footer-logo {
+  max-width: 150px;
+  margin-bottom: 15px;
+}
+
+.footer-col p {
+  margin-bottom: 10px;
+  line-height: 1.8;
+}
+
+.footer-col p i {
+  margin-right: 10px;
+  color: var(--accent-color);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: var(--accent-color);
+}
+
+/* Estilos para o botão de contato do desenvolvedor */
+.dev-contact-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 15px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dev-contact-button:hover {
+  background-color: #ffd740; /* Um amarelo mais claro */
+  transform: translateY(-3px);
+}
+
+/* Ícones sociais */
+.social-icons {
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+.social-icons a {
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+  color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+.copyright-text {
   text-align: center;
-  padding: 20px 0;
+  font-size: 0.85rem;
+  margin-top: 20px; /* Espaço do grid */
+}
+
+.privacy-link a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.privacy-link a:hover {
+  color: var(--accent-color);
+}
+
+/* --- Responsividade do Footer --- */
+@media (max-width: 768px) {
+  footer .footer-grid {
+    grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    text-align: center;
+  }
+
+  .footer-col {
+    margin-bottom: 30px; /* Espaçamento entre as colunas empilhadas */
+  }
+
+  .footer-col h3::after {
+    left: 50%; /* Centraliza a linha decorativa */
+    transform: translateX(-50%);
+  }
+
+  .footer-logo {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .social-icons {
+    justify-content: center; /* Centraliza os ícones */
+    display: flex; /* Para que justify-content funcione */
+  }
+
+  .dev-contact-col {
+    padding-top: 20px; /* Padding extra para separar no mobile */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 
 /* --- ESTILOS PARA EFEITOS DE SCROLL --- */
@@ -604,8 +753,8 @@ footer {
 
 .whatsapp-container {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 100px;
+  right: 18px;
   z-index: 998; /* Abaixo do menu overlay */
   display: flex;
   align-items: flex-end;
@@ -615,8 +764,8 @@ footer {
   background-color: #25d366;
   color: #fff;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

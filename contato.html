@@ -59,18 +59,21 @@
           </div>
           <div class="contact-form">
             <h3>Envie sua Mensagem</h3>
-            <form action="#" method="POST">
+            <form id="contact-form" action="#" method="action="https://formspree.io/f/SEU_CODIGO_UNICO" novalidate>
               <div class="form-group">
                 <label for="name">Seu Nome:</label>
                 <input type="text" id="name" name="name" required />
+                <div class="error-message"></div>
               </div>
               <div class="form-group">
                 <label for="email">Seu E-mail:</label>
                 <input type="email" id="email" name="email" required />
+                <div class="error-message"></div>
               </div>
               <div class="form-group">
                 <label for="phone">Telefone:</label>
                 <input type="tel" id="phone" name="phone" />
+                <div class="error-message"></div>
               </div>
               <div class="form-group">
                 <label for="message">Mensagem:</label>
@@ -80,6 +83,7 @@
                   rows="5"
                   required
                 ></textarea>
+                <div class="error-message"></div>
               </div>
               <button type="submit" class="cta-button">Enviar</button>
             </form>

@@ -83,4 +83,87 @@ document.addEventListener("DOMContentLoaded", () => {
       tickerMove.appendChild(clone);
     });
   }
-});
+
+  // ... (código do Ticker) ...
+
+  // --- LÓGICA PARA VALIDAÇÃO DO FORMULÁRIO DE CONTATO ---
+  const contactForm = document.querySelector("#contact-form");
+
+  // Executa o código apenas se o formulário existir na página atual
+  if (contactForm) {
+    const nameInput = document.querySelector("#name");
+    const emailInput = document.querySelector("#email");
+    const messageInput = document.querySelector("#message");
+
+    contactForm.addEventListener("submit", (event) => {
+      // Impede o envio padrão do formulário
+      event.preventDefault();
+
+      let isValid = validateForm();
+
+      if (isValid) {
+        // Se o formulário for válido, aqui é onde o enviaremos.
+        // Por enquanto, apenas exibimos uma mensagem.
+        console.log("Formulário válido, pronto para enviar!");
+
+        // Futuramente, a linha abaixo será usada para enviar
+        contactForm.submit();
+      }
+    });
+
+    const validateForm = () => {
+      let valid = true;
+      // Validação do nome
+      if (nameInput.value.trim() === "") {
+        setErrorFor(nameInput, "O nome é obrigatório.");
+        valid = false;
+      } else {
+        setSuccessFor(nameInput);
+      }
+
+      // Validação do e-mail
+      if (emailInput.value.trim() === "") {
+        setErrorFor(emailInput, "O e-mail é obrigatório.");
+        valid = false;
+      } else if (!isEmail(emailInput.value.trim())) {
+        setErrorFor(emailInput, "Por favor, insira um e-mail válido.");
+        valid = false;
+      } else {
+        setSuccessFor(emailInput);
+      }
+
+      // Validação da mensagem
+      if (messageInput.value.trim() === "") {
+        setErrorFor(messageInput, "A mensagem é obrigatória.");
+        valid = false;
+      } else {
+        setSuccessFor(messageInput);
+      }
+
+      return valid;
+    };
+
+    const setErrorFor = (input, message) => {
+      const formGroup = input.parentElement;
+      const errorDisplay = formGroup.querySelector(".error-message");
+      errorDisplay.innerText = message;
+      errorDisplay.style.display = "block";
+      input.classList.add("invalid");
+    };
+
+    const setSuccessFor = (input) => {
+      const formGroup = input.parentElement;
+      const errorDisplay = formGroup.querySelector(".error-message");
+      errorDisplay.innerText = "";
+      errorDisplay.style.display = "none";
+      input.classList.remove("invalid");
+    };
+
+    const isEmail = (email) => {
+      // Regex simples para validação de e-mail
+      return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      );
+    };
+  }
+}); // <-- Fechamento final do DOMContentLoaded

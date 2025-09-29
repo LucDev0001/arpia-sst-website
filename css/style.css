@@ -586,3 +586,16 @@ footer {
     font-size: 2rem;
   }
 }
+
+/* --- ESTILOS PARA VALIDAÇÃO DO FORMULÁRIO --- */
+.form-group .error-message {
+  color: #d93025; /* Vermelho */
+  font-size: 0.8rem;
+  margin-top: 5px;
+  display: none; /* Escondido por padrão */
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+  border-color: #d93025;
+}

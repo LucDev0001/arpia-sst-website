@@ -79,7 +79,8 @@ nav.nav-links ul li a:hover {
 .menu-toggle .bar {
   width: 100%;
   height: 3px;
-  background-color: var(--secondary-color);
+  background-color: black;
+  box-shadow: 5px 5px 0px 0px#ffc107;
   border-radius: 2px;
   transition: all 0.3s ease-in-out;
 }
@@ -839,7 +840,7 @@ footer .footer-grid {
 /* Ajuste para telas pequenas */
 @media (max-width: 480px) {
   .whatsapp-container {
-    bottom: 20px;
+    bottom: 80px;
     right: 20px;
   }
   .whatsapp-button {

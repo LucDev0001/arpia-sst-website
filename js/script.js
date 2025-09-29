@@ -166,4 +166,22 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     };
   }
+
+  // ... (código do Ticker) ...
+  // ... (código do Formulário) ...
+
+  // --- LÓGICA PARA O BOTÃO FLUTUANTE DO WHATSAPP ---
+  const whatsappContainer = document.querySelector(".whatsapp-container");
+
+  if (whatsappContainer) {
+    // Mostra o balão 2 segundos após a página carregar
+    setTimeout(() => {
+      whatsappContainer.classList.add("show-bubble");
+    }, 2000);
+
+    // Esconde o balão 10 segundos depois (8 segundos de visibilidade)
+    setTimeout(() => {
+      whatsappContainer.classList.remove("show-bubble");
+    }, 10000);
+  }
 }); // <-- Fechamento final do DOMContentLoaded
